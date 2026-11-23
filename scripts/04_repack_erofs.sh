@@ -5,7 +5,7 @@ set -euo pipefail
 # audits total dynamic partition footprint against garnet's 9.0 GiB super limit,
 # and generates a safe fastboot/fastbootd flashing script.
 
-PROJ="/Users/tahaermis/Desktop/ColorOS17-Garnet"
+PROJ="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # shellcheck source=/dev/null
 source "$PROJ/scripts/00_mount_workspace.sh"
 

@@ -10,7 +10,7 @@ set -euo pipefail
 # - Patches my_product feature flags (optical FOD, flat screen, 1220x2712 @ 480dpi)
 # - Enables early-boot insecure ADB & patches vendor_boot + vbmeta
 
-PROJ="/Users/tahaermis/Desktop/ColorOS17-Garnet"
+PROJ="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # shellcheck source=/dev/null
 source "$PROJ/scripts/00_mount_workspace.sh"
 
@@ -495,7 +495,36 @@ EOF
 fi
 
 mkdir -p "$PORT/config/garnet_overlays_src" "$PORT/product/overlay"
-cp -a "$PROJ/configs/reference_garnet/overlay/." "$PORT/config/garnet_overlays_src/"
+REF_OVERLAY_SRC="${GARNET_REF_OVERLAY_DIR:-}"
+if [[ -z "$REF_OVERLAY_SRC" && -n "${GARNET_REF_DEVICE_TREE:-}" ]]; then
+    REF_OVERLAY_SRC="$GARNET_REF_DEVICE_TREE/overlay"
+fi
+if [[ -z "$REF_OVERLAY_SRC" ]]; then
+    for candidate in \
+        "$PROJ/configs/reference_garnet/overlay" \
+        "$PROJ/reference/android_device_xiaomi_garnet/overlay"; do
+        if [[ -d "$candidate" ]]; then
+            REF_OVERLAY_SRC="$candidate"
+            break
+        fi
+    done
+fi
+if [[ -n "$REF_OVERLAY_SRC" && -d "$REF_OVERLAY_SRC" ]]; then
+    cp -a "$REF_OVERLAY_SRC/." "$PORT/config/garnet_overlays_src/"
+elif [[ "${SKIP_REF_OVERLAYS:-0}" == "1" ]]; then
+    echo "  -> Skipping reference garnet overlay staging (SKIP_REF_OVERLAYS=1)."
+else
+    cat >&2 << 'EOF'
+ERROR: Missing reference garnet device-tree overlay directory.
+Third-party reference device tree files are intentionally excluded from this repository.
+Provide a local Xiaomi garnet device-tree overlay directory via one of:
+  - GARNET_REF_OVERLAY_DIR=/path/to/garnet/overlay
+  - GARNET_REF_DEVICE_TREE=/path/to/android_device_xiaomi_garnet
+  - Local directory configs/reference_garnet/overlay/ or reference/android_device_xiaomi_garnet/overlay/
+Or set SKIP_REF_OVERLAYS=1 to skip staging reference overlay sources into port_build/config/.
+EOF
+    exit 1
+fi
 
 rm -f "$PORT/product/overlay/DevicesOverlay.apk" "$PORT/product/overlay/DevicesAndroidOverlay.apk"
 # Build #6: Do NOT copy Xiaomi DevicesAndroidOverlay.apk (it overrides config_dozeComponent to non-existent MiuiDozeService)
@@ -715,8 +744,10 @@ fi
 if [[ -f "$OPLUS_SVC_JAR" ]] && [[ -f "$PROJ/src/garnet_fod/GarnetFodHelper.java" ]] && command -v apktool >/dev/null 2>&1; then
     FOD_TMP="$PORT/boot_work/oplus_fod_patch"
     rm -rf "$FOD_TMP" && mkdir -p "$FOD_TMP/classes" "$FOD_TMP/dex"
-    AJAR_PATH="/Users/tahaermis/Library/Android/sdk/platforms/android-37.0/android.jar"
-    D8_BIN="/Users/tahaermis/Library/Android/sdk/build-tools/36.0.0/d8"
+    ANDROID_SDK_DIR="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-$HOME/Library/Android/sdk}}"
+    AJAR_PATH="${ANDROID_JAR:-$ANDROID_SDK_DIR/platforms/android-37.0/android.jar}"
+    D8_BIN="${D8_BIN:-${ANDROID_BUILD_TOOLS:+$ANDROID_BUILD_TOOLS/d8}}"
+    D8_BIN="${D8_BIN:-$ANDROID_SDK_DIR/build-tools/36.0.0/d8}"
     if [[ -f "$AJAR_PATH" ]] && [[ -x "$D8_BIN" ]]; then
         javac --release 11 -cp "$AJAR_PATH" -d "$FOD_TMP/classes" "$PROJ/src/garnet_fod/GarnetFodHelper.java"
         "$D8_BIN" --lib "$AJAR_PATH" --output "$FOD_TMP/dex" "$FOD_TMP/classes/com/garnet/fod/"*.class

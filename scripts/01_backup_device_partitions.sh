@@ -5,7 +5,7 @@ set -euo pipefail
 # Must be run while the device is booted into OrangeFox/TWRP recovery (or rooted adb shell).
 # NEVER writes to or erases any partition on the device.
 
-PROJ="/Users/tahaermis/Desktop/ColorOS17-Garnet"
+PROJ="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 export PATH="$PROJ/tools/bin:/opt/homebrew/bin:$PATH"
 
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")

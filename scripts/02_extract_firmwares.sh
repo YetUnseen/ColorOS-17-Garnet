@@ -4,7 +4,7 @@ set -euo pipefail
 # Extracts stock HyperOS (garnet) and donor ColorOS 17 (PKJ110) firmware archives
 # into the Case-Sensitive APFS workspace, then unpacks EROFS images.
 
-PROJ="/Users/tahaermis/Desktop/ColorOS17-Garnet"
+PROJ="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 # shellcheck source=/dev/null
 source "$PROJ/scripts/00_mount_workspace.sh"
 

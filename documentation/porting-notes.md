@@ -15,6 +15,11 @@
 Sources for patches live in `src/garnet_fod/` (FOD, LHBM shim, cryptoeng, auth animation) and
 `src/garnet_vibrator/`; overlay sources in `configs/garnet_overlays/`.
 
+External dependencies not redistributed in this repository:
+- Stock Xiaomi `garnet` and donor OPPO `PKJ110` firmware packages (placed in `downloads/`).
+- Optional/external Xiaomi `garnet` reference device-tree overlays for `scripts/03_merge_and_patch_port.sh` (supply via `GARNET_REF_OVERLAY_DIR` or `GARNET_REF_DEVICE_TREE`, or set `SKIP_REF_OVERLAYS=1`).
+- Host tools listed in [../tools/TOOLCHAIN_STATUS.md](../tools/TOOLCHAIN_STATUS.md) and Android SDK (`ANDROID_SDK_ROOT` / `ANDROID_BUILD_TOOLS`).
+
 ## Case-sensitive workspace
 Android trees need a case-sensitive filesystem. macOS volumes are case-insensitive by default, so
 the work happens in a case-sensitive APFS sparse image mounted at `mnt_workspace/`. Remount with

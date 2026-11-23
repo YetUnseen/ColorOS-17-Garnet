@@ -9,7 +9,8 @@
 ## Build host
 - **`mnt_workspace` missing / "No such file":** the sparseimage was detached; run `source scripts/00_mount_workspace.sh`.
 - **Overlay not applied / wrong label:** reapply `chmod 0644` and the SELinux xattr; confirm with `cmd overlay list`.
-- **Hard-coded paths:** scripts reference the project path; update after moving the folder.
+- **Missing reference overlay directory:** `scripts/03_merge_and_patch_port.sh` expects a local Xiaomi `garnet` reference overlay directory (`GARNET_REF_OVERLAY_DIR` or `GARNET_REF_DEVICE_TREE`) because third-party reference device tree files are not redistributed here; pass one of those variables or set `SKIP_REF_OVERLAYS=1`.
+- **Android SDK paths:** set `ANDROID_SDK_ROOT` (or `ANDROID_HOME`, `ANDROID_BUILD_TOOLS`, `ANDROID_JAR`, `D8_BIN`) if your Android SDK is not installed at `$HOME/Library/Android/sdk`.
 
 ## Display
 - **Island too big or too thin:** adjust `capsule_max_height_size` (island_padding) and the status bar overlay; see [../fixes/05-island-cutout-overlays.md](../fixes/05-island-cutout-overlays.md). Check `dumpsys` of SystemUI for `statusBarHeight`.

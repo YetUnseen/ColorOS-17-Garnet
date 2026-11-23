@@ -63,3 +63,15 @@ The project's own scripts, source, overlay sources, and documentation are under 
 OPPO / OnePlus / ColorOS, Xiaomi / HyperOS / MIUI, and Qualcomm firmware, binaries, and images are
 proprietary to their owners, are **not** covered by that license, and are **not** distributed here.
 You must obtain stock firmware yourself.
+
+### Third-party dependencies & attribution
+
+This repository does not redistribute third-party binaries or unverified device trees. Building or
+patching images locally relies on external upstream tools (installed separately — see
+[tools/TOOLCHAIN_STATUS.md](tools/TOOLCHAIN_STATUS.md)), including:
+
+- Android SDK Platform-Tools & Build-Tools (`adb`, `fastboot`, `aapt2`, `zipalign`, `apksigner`, `d8`) — Android Open Source Project (Apache-2.0 / Android SDK License)
+- `avbtool` (AOSP / LineageOS `android_external_avb`, Apache-2.0)
+- `magiskboot` (`topjohnwu/Magisk` / `PinNaCode/magiskboot_build`, GPLv3)
+- `lpunpack` (`soe1hom-arch/lpunpack-go` / AOSP `partition_tools`)
+- `erofs-utils`, `apktool`, `jadx`, `payload-dumper-go`, `simg2img`, `lz4`, `zstd`, `aarch64-elf-gcc`, and Python packages (`protobuf`, `pycryptodome`, `requests`) — each governed by its respective upstream license.

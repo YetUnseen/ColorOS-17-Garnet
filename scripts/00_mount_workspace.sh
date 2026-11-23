@@ -2,7 +2,13 @@
 # Mounts the Case-Sensitive APFS workspace volume and configures PATH & garnet specs.
 # Usage: source scripts/00_mount_workspace.sh
 
-PROJ="/Users/tahaermis/Desktop/ColorOS17-Garnet"
+_GARNET_SCRIPT_PATH="${BASH_SOURCE[0]:-$0}"
+if [[ -n "${ZSH_VERSION:-}" ]]; then
+    # shellcheck disable=SC2296
+    _GARNET_SCRIPT_PATH="${(%):-%x}"
+fi
+PROJ="$(cd "$(dirname "$_GARNET_SCRIPT_PATH")/.." && pwd)"
+unset _GARNET_SCRIPT_PATH
 SPARSE_IMG="$PROJ/workspace_cs.sparseimage"
 MNT_POINT="$PROJ/mnt_workspace"
 

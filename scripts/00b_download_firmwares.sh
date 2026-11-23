@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJ="/Users/tahaermis/Desktop/ColorOS17-Garnet"
+PROJ="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DL_DIR="$PROJ/downloads"
 mkdir -p "$DL_DIR"
 
