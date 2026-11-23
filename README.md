@@ -32,7 +32,7 @@ Excluded from this repository (local-only on the developer's machine):
 
 - **Verified working (developer-confirmed on device):** ColorOS 17 boots on `garnet`, smooth daily use, fingerprint unlock and awake lock screen press animation, double-tap to wake, Always-On Display (AOD), wake/AOD flicker fix, Bluetooth pairing and audio, speaker, microphone, NFC, auto-brightness, 60/90/120 Hz refresh rate, proximity sensor and auto-rotation, torch, USB-C audio, OTG, GPS, Wi-Fi 5 GHz, wired charging, and camera in tested apps.
 - **Known limitation:** **Face unlock** is unavailable because a compatible face HAL implementation was not found.
-- **Pending verification / untested:** Vibration, app lock (privacy password), and updated Dynamic Island sizing fixes have been applied and await full verification. Cellular/SIM/calls/mobile data/VoLTE and other features not explicitly verified remain untested and subject to further regression testing. Wireless charging is not applicable (no hardware).
+- **Pending verification / untested:** Cellular/SIM/calls/mobile data/VoLTE and other features not explicitly verified remain untested and subject to further regression testing. Wireless charging is not applicable (no hardware).
 
 See [COMPATIBILITY.md](COMPATIBILITY.md) for the full breakdown.
 
