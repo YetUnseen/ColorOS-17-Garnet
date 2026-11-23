@@ -1,0 +1,3 @@
+<resources>
+    <bool name="config_fillMainBuiltInDisplayCutout">false</bool>
+</resources>

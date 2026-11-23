@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="capsule_hole_safe_height_gap">5dp</dimen>
+    <dimen name="capsule_max_height_size">120px</dimen>
+    <dimen name="capsule_max_height_size_high">120px</dimen>
+</resources>

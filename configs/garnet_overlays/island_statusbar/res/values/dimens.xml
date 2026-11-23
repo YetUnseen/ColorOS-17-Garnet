@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="status_bar_height_portrait">135px</dimen>
+    <dimen name="status_bar_height_default">135px</dimen>
+</resources>

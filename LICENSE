@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Taha
+Copyright (c) 2026 Garnet ColorOS17 Port contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+--------------------------------------------------------------------------
+Scope notice
+
+This MIT License covers ONLY the original scripts, source code, resource
+overlay sources and documentation written for this project.
+
+It does NOT cover, and this repository does NOT redistribute, any OPPO,
+OnePlus, ColorOS, Xiaomi, HyperOS/MIUI, Qualcomm or other third-party
+firmware, system images, binaries, libraries, apps, fonts or media. Those
+remain the proprietary property of their respective owners and are subject
+to their own licenses and terms. Users must obtain such firmware themselves
+and are responsible for complying with those terms and applicable law.

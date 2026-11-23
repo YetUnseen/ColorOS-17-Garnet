@@ -1,0 +1,41 @@
+.DS_Store
+*.sparseimage
+*.img
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.tgz
+*.bin
+
+downloads/
+output/
+logs/
+backups/
+mnt_workspace/
+workspace_cs.sparseimage
+.venv/
+
+# private signing material
+*.jks
+*.keystore
+
+# generated python files
+__pycache__/
+*.py[cod]
+
+# compiled overlays and native helper binary
+*.apk
+*.apk.idsig
+src/garnet_fod/garnet_lhbm_helper
+
+# nested repositories
+**/.git/
+
+# bundled third party tools
+tools/bin/
+tools/*.jks
+
+# unresolved third-party reference device tree (excluded until upstream origin/license is verified)
+reference/android_device_xiaomi_garnet/
+configs/reference_garnet/
